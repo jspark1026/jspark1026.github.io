@@ -3,66 +3,184 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Academic profile of Junseo Park, graduate researcher at UNIST.">
-  <title>Junseo Park | Research</title>
+  <meta name="description" content="Junseo Park, graduate researcher at UNIST. Research in regional climate modeling, atmosphere–ocean coupled modeling, and AI-based climate emulators.">
+  <title>Junseo Park | 박준서</title>
   <style>
     :root {
-      color-scheme: light;
-      font: 100%/1.6 system-ui, sans-serif;
-      color: #172c31;
-      background: #f8f7f2;
+      color-scheme: dark;
+      font: 100%/1.6 "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", system-ui, sans-serif;
+      color: #fff;
+      background: #000;
     }
     * { box-sizing: border-box; }
     body { margin: 0; }
-    main { width: min(100% - 2.5rem, 50rem); margin: auto; }
-    .hero { padding: clamp(3rem, 11vw, 8rem) 0 3rem; }
-    .label {
-      margin: 0 0 1rem;
-      color: #235c56;
+    main { width: min(100% - 2rem, 68rem); margin-inline: auto; }
+    h1, h2, h3, p { margin: 0; }
+    a { color: inherit; text-underline-offset: .23em; }
+    a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+    .korean { word-break: keep-all; overflow-wrap: anywhere; }
+
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem 1.25rem;
+      padding-block: 1.25rem;
+      border-bottom: 1px solid #5d5d5d;
+    }
+    .eyebrow {
       font-size: .75rem;
       font-weight: 700;
-      letter-spacing: .15em;
+      letter-spacing: .14em;
       text-transform: uppercase;
     }
-    h1, h2 { font-family: Georgia, serif; font-weight: 400; line-height: 1.1; }
-    h1 { margin: 0 0 1rem; font-size: clamp(3.2rem, 10vw, 6.4rem); letter-spacing: -.055em; }
-    h2 { margin: 0 0 .75rem; font-size: 1.8rem; }
-    .affiliation { margin: 0; font-size: clamp(.98rem, 2.5vw, 1.15rem); }
-    .affiliation + .affiliation { margin-top: .2rem; }
-    .details {
+    .masthead nav { display: flex; gap: 1.25rem; font-size: .875rem; }
+    .hero {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 2.5rem;
-      padding: 2rem 0 3.5rem;
-      border-top: 1px solid #a4b8b0;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 1.5rem;
+      padding-block: clamp(3rem, 8vw, 6rem);
     }
-    .details p { margin: 0; max-width: 37ch; color: #40575a; }
-    a { color: #175b54; text-underline-offset: .2em; }
-    a:focus-visible { outline: 2px solid #175b54; outline-offset: 4px; }
-    @media (max-width: 38rem) {
-      .details { grid-template-columns: 1fr; gap: 2rem; }
+    h1 {
+      font-size: clamp(2.85rem, 8vw, 6.25rem);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -.065em;
+    }
+    h1 .korean {
+      display: block;
+      margin-top: .5rem;
+      font-size: .49em;
+      font-weight: 600;
+      letter-spacing: -.035em;
+    }
+    .affiliation { margin-top: 1.4rem; color: #dedede; }
+    .affiliation .korean { display: block; margin-top: .2rem; color: #bcbcbc; }
+    .hero-art { width: 100%; height: auto; color: #fff; }
+
+    .section-title { font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.035em; }
+    .section-title .korean { margin-left: .4em; font-size: .67em; }
+    .research { border-top: 1px solid #5d5d5d; padding-top: 1.75rem; }
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 1.1rem 0 2rem;
+    }
+    .topic {
+      padding: 1.25rem;
+      border: 1px solid #5d5d5d;
+      background: #111;
+    }
+    .topic .eyebrow { color: #bcbcbc; margin-bottom: .6rem; }
+    .topic h3 { font-size: 1.125rem; line-height: 1.35; }
+    .topic h3 .korean { display: block; margin-top: .25rem; font-size: .85em; }
+    .topic .summary { color: #dedede; margin-top: .7rem; }
+    .topic .summary .korean { display: block; color: #bcbcbc; margin-top: .5rem; font-size: .9em; }
+    .topic .paper { display: inline-block; margin-top: .8rem; font-size: .9rem; }
+
+    .profiles {
+      color-scheme: light;
+      color: #111;
+      background: #fff;
+      padding: clamp(1.25rem, 4vw, 2rem);
+      margin-bottom: 3rem;
+    }
+    .profiles ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+      gap: .25rem 1rem;
+      list-style: none;
+      padding: 0;
+      margin: .8rem 0 0;
+    }
+    .profiles a { display: inline-block; padding-block: .5rem; font-weight: 600; }
+
+    @media (max-width: 45rem) {
+      .hero { grid-template-columns: 1fr; gap: .75rem; }
+      .hero-art { width: min(100%, 20rem); justify-self: end; }
+      .topics { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <main>
-    <header class="hero">
-      <p class="label">Academic profile</p>
-      <h1>Junseo Park</h1>
-      <p class="affiliation">Graduate Researcher · UNIST</p>
-      <p class="affiliation">High-Impact Weather Prediction Laboratory (HWPL)</p>
-    </header>
-    <div class="details">
-      <section aria-labelledby="research">
-        <h2 id="research">Research</h2>
-        <p>I work on regional climate modeling and contribute to CORDEX activities.</p>
-      </section>
-      <section aria-labelledby="profiles">
-        <h2 id="profiles">CV &amp; academic profiles</h2>
-        <p>My CV, research projects, and academic profile links will be added here.</p>
-        <!-- Add verified links to the CV, lab website, Google Scholar, ORCID, and ResearchGate here. -->
-      </section>
+    <div class="masthead">
+      <span class="eyebrow">Research profile</span>
+      <nav aria-label="Page sections">
+        <a href="#research">Research</a>
+        <a href="#profiles">Profiles</a>
+      </nav>
     </div>
+
+    <header class="hero">
+      <div>
+        <h1>Junseo Park <span lang="ko" class="korean">박준서</span></h1>
+        <p class="affiliation">
+          Integrated M.S./Ph.D. Student · UNIST<br>
+          High-Impact Weather Prediction Laboratory (HWPL)
+          <span lang="ko" class="korean">UNIST 석박통합과정 · 재해기상예측연구실</span>
+        </p>
+      </div>
+      <svg class="hero-art" viewBox="0 0 360 170" width="360" height="170" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor">
+          <path opacity=".35" d="M0 139H360M238 0V170"/>
+          <path opacity=".48" d="M2 132C66 130 91 115 126 79S205 24 244 44s65 69 114 73"/>
+          <path opacity=".65" d="M2 120c58-2 79-19 114-58S200 5 245 24s64 73 113 77"/>
+          <path d="M2 145c68-1 101-16 139-49s75-48 108-28 62 62 109 63"/>
+          <path opacity=".48" d="M2 158c76-1 117-14 153-42s61-38 93-20 65 50 110 49"/>
+        </g>
+        <circle cx="238" cy="62" r="4" fill="currentColor"/>
+      </svg>
+    </header>
+
+    <section class="research" aria-labelledby="research">
+      <h2 id="research" class="section-title">Research <span lang="ko" class="korean">연구 분야</span></h2>
+      <ul class="topics">
+        <li class="topic">
+          <p class="eyebrow" aria-hidden="true">01</p>
+          <h3>Regional Climate Modeling &amp; CORDEX
+            <span lang="ko" class="korean">지역 기후모델링과 CORDEX</span>
+          </h3>
+          <p class="summary">I use regional climate models to study climate variability and change, and contribute to CORDEX activities.
+            <span lang="ko" class="korean">지역 기후모델로 기후 변동과 변화를 연구하며 CORDEX 활동에 참여합니다.</span>
+          </p>
+          <a class="paper" href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003194619">East Asian summer monsoon study <span aria-hidden="true">↗</span></a>
+        </li>
+        <li class="topic">
+          <p class="eyebrow" aria-hidden="true">02</p>
+          <h3>Atmosphere–Ocean Coupled Modeling
+            <span lang="ko" class="korean">대기–해양 결합모델링</span>
+          </h3>
+          <p class="summary">I use coupled models to study how atmosphere–ocean interactions shape regional climate.
+            <span lang="ko" class="korean">결합모델을 활용해 대기와 해양의 상호작용이 지역 기후에 미치는 영향을 연구합니다.</span>
+          </p>
+          <a class="paper" href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1932600/abstract">Marine heatwaves study <span aria-hidden="true">↗</span></a>
+        </li>
+        <li class="topic">
+          <p class="eyebrow" aria-hidden="true">03</p>
+          <h3>AI-Based Climate Emulators
+            <span lang="ko" class="korean">AI 기반 기후 에뮬레이터</span>
+          </h3>
+          <p class="summary">I am developing AI-based emulators to approximate climate-model outputs.
+            <span lang="ko" class="korean">기후모델의 모의 결과를 근사하는 AI 기반 에뮬레이터를 개발하고 있습니다.</span>
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="profiles" aria-labelledby="profiles">
+      <h2 id="profiles" class="section-title">Academic links <span lang="ko" class="korean">연구 링크</span></h2>
+      <ul>
+        <li><a href="https://dhcha.unist.ac.kr/">HWPL <span lang="ko" class="korean">연구실</span> <span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://orcid.org/0009-0006-8169-6709">ORCID <span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://www.researchgate.net/profile/Junseo-Park-13">ResearchGate <span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://loop.frontiersin.org/people/3601711/overview">Frontiers Loop <span aria-hidden="true">↗</span></a></li>
+      </ul>
+    </section>
   </main>
 </body>
 </html>
