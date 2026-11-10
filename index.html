@@ -5,10 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Junseo Park, graduate researcher at UNIST. Research in regional climate modeling, atmosphere–ocean coupled modeling, and AI-based climate emulators.">
   <title>Junseo Park | 박준서</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin>
   <style>
+    /* Some installations expose each Apple SD Gothic Neo weight as a separate local font. */
+    @font-face {
+      font-family: "Apple SD Gothic Neo Local";
+      src: local("AppleSDGothicNeoT00");
+      font-weight: 100;
+    }
+    @font-face {
+      font-family: "Apple SD Gothic Neo Local";
+      src: local("AppleSDGothicNeoUL00");
+      font-weight: 200;
+    }
+    @font-face {
+      font-family: "Apple SD Gothic Neo Local";
+      src: local("AppleSDGothicNeoL00");
+      font-weight: 300;
+    }
+    @font-face {
+      font-family: "Apple SD Gothic Neo Local";
+      src: local("AppleSDGothicNeoR00");
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: "Apple SD Gothic Neo Local";
+      src: local("AppleSDGothicNeoM00");
+      font-weight: 500;
+    }
+    @font-face {
+      font-family: "Apple SD Gothic Neo Local";
+      src: local("AppleSDGothicNeoSB00");
+      font-weight: 600;
+    }
+    @font-face {
+      font-family: "Apple SD Gothic Neo Local";
+      src: local("AppleSDGothicNeoB00");
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: "Apple SD Gothic Neo Local";
+      src: local("AppleSDGothicNeoEB00");
+      font-weight: 800;
+    }
+    @font-face {
+      font-family: "Apple SD Gothic Neo Local";
+      src: local("AppleSDGothicNeoH00");
+      font-weight: 900;
+    }
     :root {
       color-scheme: dark;
-      font: 100%/1.6 "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", system-ui, sans-serif;
+      font: 400 100%/1.6 "Apple SD Gothic Neo", "Apple SD Gothic Neo Local", "Pretendard Variable", "Malgun Gothic", system-ui, sans-serif;
       color: #fff;
       background: #000;
     }
@@ -34,7 +81,7 @@
       letter-spacing: .14em;
       text-transform: uppercase;
     }
-    .masthead nav { display: flex; gap: 1.25rem; font-size: .875rem; }
+    .masthead nav { display: flex; gap: 1.25rem; font-size: .875rem; font-weight: 500; }
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
@@ -44,7 +91,7 @@
     }
     h1 {
       font-size: clamp(2.85rem, 8vw, 6.25rem);
-      font-weight: 800;
+      font-weight: 900;
       line-height: 1.06;
       letter-spacing: -.065em;
     }
@@ -52,15 +99,15 @@
       display: block;
       margin-top: .5rem;
       font-size: .49em;
-      font-weight: 600;
+      font-weight: 300;
       letter-spacing: -.035em;
     }
-    .affiliation { margin-top: 1.4rem; color: #dedede; }
-    .affiliation .korean { display: block; margin-top: .2rem; color: #bcbcbc; }
+    .affiliation { margin-top: 1.4rem; color: #dedede; font-weight: 500; }
+    .affiliation .korean { display: block; margin-top: .2rem; color: #bcbcbc; font-weight: 400; }
     .hero-art { width: 100%; height: auto; color: #fff; }
 
-    .section-title { font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.035em; }
-    .section-title .korean { margin-left: .4em; font-size: .67em; }
+    .section-title { font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 800; letter-spacing: -.035em; }
+    .section-title .korean { margin-left: .4em; font-size: .67em; font-weight: 600; }
     .research { border-top: 1px solid #5d5d5d; padding-top: 1.75rem; }
     .topics {
       display: grid;
@@ -76,8 +123,8 @@
       background: #111;
     }
     .topic .eyebrow { color: #bcbcbc; margin-bottom: .6rem; }
-    .topic h3 { font-size: 1.125rem; line-height: 1.35; }
-    .topic h3 .korean { display: block; margin-top: .25rem; font-size: .85em; }
+    .topic h3 { font-size: 1.125rem; font-weight: 700; line-height: 1.35; }
+    .topic h3 .korean { display: block; margin-top: .25rem; font-size: .85em; font-weight: 500; }
     .topic .summary { color: #dedede; margin-top: .7rem; }
     .topic .summary .korean { display: block; color: #bcbcbc; margin-top: .5rem; font-size: .9em; }
     .topic .paper { display: inline-block; margin-top: .8rem; font-size: .9rem; }
@@ -127,13 +174,11 @@
       </div>
       <svg class="hero-art" viewBox="0 0 360 170" width="360" height="170" aria-hidden="true" focusable="false">
         <g fill="none" stroke="currentColor">
-          <path opacity=".35" d="M0 139H360M238 0V170"/>
           <path opacity=".48" d="M2 132C66 130 91 115 126 79S205 24 244 44s65 69 114 73"/>
           <path opacity=".65" d="M2 120c58-2 79-19 114-58S200 5 245 24s64 73 113 77"/>
           <path d="M2 145c68-1 101-16 139-49s75-48 108-28 62 62 109 63"/>
           <path opacity=".48" d="M2 158c76-1 117-14 153-42s61-38 93-20 65 50 110 49"/>
         </g>
-        <circle cx="238" cy="62" r="4" fill="currentColor"/>
       </svg>
     </header>
 
