@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Junseo Park, graduate researcher at UNIST. Research in regional climate modeling, atmosphere–ocean coupled modeling, and AI-based climate emulators.">
+  <meta name="description" content="Junseo Park, integrated M.S.–Ph.D. student at UNIST. Research, publications, and English and Korean CVs.">
   <title>Junseo Park | 박준서</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin>
   <style>
@@ -81,7 +81,7 @@
       letter-spacing: .14em;
       text-transform: uppercase;
     }
-    .masthead nav { display: flex; gap: 1.25rem; font-size: .875rem; font-weight: 500; }
+    .masthead nav { display: flex; flex-wrap: wrap; gap: .45rem 1.25rem; font-size: .875rem; font-weight: 500; }
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
@@ -105,6 +105,21 @@
     .affiliation { margin-top: 1.4rem; color: #dedede; font-weight: 500; }
     .affiliation .korean { display: block; margin-top: .2rem; color: #bcbcbc; font-weight: 400; }
     .hero-art { width: 100%; height: auto; color: #fff; }
+    .cv-links { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.4rem; }
+    .cv-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem .85rem;
+      min-height: 44px;
+      border: 1px solid #bcbcbc;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .cv-links a:first-child { color: #111; background: #fff; }
+    .cv-links a:hover { text-decoration: underline; }
+    .cv-links a:focus-visible { outline-color: #fff; }
+    .cv-links small { font-size: .75rem; font-weight: 500; }
 
     .section-title { font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 800; letter-spacing: -.035em; }
     .section-title .korean { margin-left: .4em; font-size: .67em; font-weight: 600; }
@@ -122,12 +137,28 @@
       border: 1px solid #5d5d5d;
       background: #111;
     }
-    .topic .eyebrow { color: #bcbcbc; margin-bottom: .6rem; }
     .topic h3 { font-size: 1.125rem; font-weight: 700; line-height: 1.35; }
     .topic h3 .korean { display: block; margin-top: .25rem; font-size: .85em; font-weight: 500; }
     .topic .summary { color: #dedede; margin-top: .7rem; }
     .topic .summary .korean { display: block; color: #bcbcbc; margin-top: .5rem; font-size: .9em; }
     .topic .paper { display: inline-block; margin-top: .8rem; font-size: .9rem; }
+
+    .publications { border-top: 1px solid #5d5d5d; padding-block: 1.75rem 2rem; }
+    .entries { list-style: none; margin: .8rem 0 0; padding: 0; }
+    .entries li { padding-block: .8rem; overflow-wrap: anywhere; }
+    .entries li + li { border-top: 1px solid #383838; }
+    .entries h3 { font-size: 1rem; font-weight: 700; line-height: 1.45; }
+    .entries p { margin-top: .22rem; font-size: .9rem; color: #d0d0d0; }
+    .entries strong { color: #fff; font-weight: 700; }
+    .entries .korean { color: #bcbcbc; }
+    .credentials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .credentials section { padding: 1.25rem; border: 1px solid #5d5d5d; background: #111; }
+    .credentials .entries li:last-child { padding-bottom: 0; }
 
     .profiles {
       color-scheme: light;
@@ -149,7 +180,7 @@
     @media (max-width: 45rem) {
       .hero { grid-template-columns: 1fr; gap: .75rem; }
       .hero-art { width: min(100%, 20rem); justify-self: end; }
-      .topics { grid-template-columns: 1fr; }
+      .topics, .credentials { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -159,6 +190,8 @@
       <span class="eyebrow">Research profile</span>
       <nav aria-label="Page sections">
         <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#cv">CV</a>
         <a href="#profiles">Profiles</a>
       </nav>
     </div>
@@ -167,10 +200,14 @@
       <div>
         <h1>Junseo Park <span lang="ko" class="korean">박준서</span></h1>
         <p class="affiliation">
-          Integrated M.S./Ph.D. Student · UNIST<br>
+          Integrated M.S.–Ph.D. student · UNIST<br>
           High-Impact Weather Prediction Laboratory (HWPL)
-          <span lang="ko" class="korean">UNIST 석박통합과정 · 재해기상예측연구실</span>
+          <span lang="ko" class="korean">UNIST 지구환경도시건설공학과 석박통합과정 · 재해기상예측연구실</span>
         </p>
+        <div class="cv-links" id="cv">
+          <a href="cv/Junseo_Park_CV_EN.pdf">CV in English <small>(PDF)</small></a>
+          <a href="cv/Junseo_Park_CV_KO.pdf"><span lang="ko">국문 CV</span> <small>(PDF)</small></a>
+        </div>
       </div>
       <svg class="hero-art" viewBox="0 0 360 170" width="360" height="170" aria-hidden="true" focusable="false">
         <g fill="none" stroke="currentColor">
@@ -186,27 +223,24 @@
       <h2 id="research" class="section-title">Research <span lang="ko" class="korean">연구 분야</span></h2>
       <ul class="topics">
         <li class="topic">
-          <p class="eyebrow" aria-hidden="true">01</p>
           <h3>Regional Climate Modeling &amp; CORDEX
             <span lang="ko" class="korean">지역 기후모델링과 CORDEX</span>
           </h3>
           <p class="summary">I use regional climate models to study climate variability and change, and contribute to CORDEX activities.
             <span lang="ko" class="korean">지역 기후모델로 기후 변동과 변화를 연구하며 CORDEX 활동에 참여합니다.</span>
           </p>
-          <a class="paper" href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003194619">East Asian summer monsoon study <span aria-hidden="true">↗</span></a>
+          <a class="paper" href="#monsoon-paper">East Asian summer monsoon study</a>
         </li>
         <li class="topic">
-          <p class="eyebrow" aria-hidden="true">02</p>
           <h3>Atmosphere–Ocean Coupled Modeling
             <span lang="ko" class="korean">대기–해양 결합모델링</span>
           </h3>
           <p class="summary">I use coupled models to study how atmosphere–ocean interactions shape regional climate.
             <span lang="ko" class="korean">결합모델을 활용해 대기와 해양의 상호작용이 지역 기후에 미치는 영향을 연구합니다.</span>
           </p>
-          <a class="paper" href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1932600/abstract">Marine heatwaves study <span aria-hidden="true">↗</span></a>
+          <a class="paper" href="#heatwaves-paper">Marine heatwaves study</a>
         </li>
         <li class="topic">
-          <p class="eyebrow" aria-hidden="true">03</p>
           <h3>AI-Based Climate Emulators
             <span lang="ko" class="korean">AI 기반 기후 에뮬레이터</span>
           </h3>
@@ -217,9 +251,72 @@
       </ul>
     </section>
 
+    <section class="publications" aria-labelledby="publications">
+      <h2 id="publications" class="section-title">Publications <span lang="ko" class="korean">학술지 논문</span></h2>
+      <ul class="entries">
+        <li id="heatwaves-paper">
+          <h3><a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1932600/abstract">Assessing anthropogenic thermodynamic influences on marine heatwaves near the Korean Peninsula using a coupled regional climate model</a></h3>
+          <p>Kim, Y.-H., Cho, W., Kang, T., <strong>Park, J.</strong>, Cha, D.-H., Jun, S.-Y., &amp; Min, S.-K.</p>
+          <p><i>Frontiers in Marine Science</i> · Accepted 28 Oct 2026 <span lang="ko" class="korean">(게재 승인)</span></p>
+        </li>
+        <li>
+          <h3><a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2025JD044820">Spatiotemporal Characteristics of Mesoscale Convective Systems Over East Asian Monsoon Region Simulated by a Convection-Permitting Model</a></h3>
+          <p>Mun, T., Park, H., <strong>Park, J.</strong>, Cha, D.-H., Lee, M.-I., Son, S.-W., &amp; Min, S.-K.</p>
+          <p><i>Journal of Geophysical Research: Atmospheres</i> · 2025 · 130(24), e2025JD044820</p>
+        </li>
+        <li id="monsoon-paper">
+          <h3><a href="https://www.konkuk.ac.kr/sites/kucri/files/down/20-1_2.pdf">Assessment of Planetary Boundary Layer and Cumulus Parameterization Schemes on 2022 East Asian Summer Monsoon Simulation <small>(PDF)</small></a></h3>
+          <p><strong>Park, J.</strong> &amp; Cha, D.-H.</p>
+          <p><i>Journal of Climate Research</i> · 2025 · 20(1), 27–42</p>
+        </li>
+      </ul>
+    </section>
+
+    <div class="credentials">
+      <section aria-labelledby="education">
+        <h2 id="education" class="section-title">Education <span lang="ko" class="korean">학력</span></h2>
+        <ul class="entries">
+          <li>
+            <h3>Integrated M.S.–Ph.D. program, UNIST</h3>
+            <p lang="ko" class="korean">울산과학기술원 지구환경도시건설공학과 석박통합과정</p>
+            <p>Feb 2023–present</p>
+          </li>
+          <li>
+            <h3>B.S. in Urban and Environmental Engineering, UNIST</h3>
+            <p lang="ko" class="korean">울산과학기술원 도시환경공학 학사</p>
+            <p>Mar 2020–Feb 2023</p>
+          </li>
+        </ul>
+      </section>
+      <section aria-labelledby="honors">
+        <h2 id="honors" class="section-title">Awards and Scholarships <span lang="ko" class="korean">수상 및 장학금</span></h2>
+        <ul class="entries">
+          <li>
+            <h3>Best Poster Paper Award</h3>
+            <p>Korean Society of Climate Change Research, Fall Meeting · Nov 2024</p>
+            <p lang="ko" class="korean">한국기후변화학회 하반기 학술대회 최우수포스터논문상</p>
+          </li>
+          <li>
+            <h3>Encouragement Award, Disaster and Safety Data Hackathon</h3>
+            <p>UNIST Industry–University Cooperation Foundation · Jun 2023</p>
+            <p lang="ko" class="korean">재난안전 데이터 해커톤 장려상 (울산과학기술원 산학협력단장상)</p>
+          </li>
+          <li>
+            <h3>UNIST Scholarship (Graduate)</h3>
+            <p><span lang="ko" class="korean">UNIST 장학금(대학원)</span> · Feb 2023–present</p>
+          </li>
+          <li>
+            <h3>UNIST Scholarship (Undergraduate)</h3>
+            <p><span lang="ko" class="korean">UNIST 장학금(학부)</span> · Mar 2020–Feb 2023</p>
+          </li>
+        </ul>
+      </section>
+    </div>
+
     <section class="profiles" aria-labelledby="profiles">
       <h2 id="profiles" class="section-title">Academic links <span lang="ko" class="korean">연구 링크</span></h2>
       <ul>
+        <li><a href="mailto:junseo1026@unist.ac.kr">junseo1026@unist.ac.kr</a></li>
         <li><a href="https://dhcha.unist.ac.kr/">HWPL <span lang="ko" class="korean">연구실</span> <span aria-hidden="true">↗</span></a></li>
         <li><a href="https://orcid.org/0009-0006-8169-6709">ORCID <span aria-hidden="true">↗</span></a></li>
         <li><a href="https://www.researchgate.net/profile/Junseo-Park-13">ResearchGate <span aria-hidden="true">↗</span></a></li>
