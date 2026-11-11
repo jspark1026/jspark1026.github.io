@@ -562,5 +562,37 @@
       </ul>
     </section>
   </main>
+  <script>
+    (() => {
+      const preferenceKey = "web-analytics-opt-out";
+      const url = new URL(location.href);
+      const action = url.searchParams.get("analytics");
+      const disable = action === "off";
+      const enable = action === "on";
+      let optedOut = disable;
+
+      try {
+        if (disable) localStorage.setItem(preferenceKey, "1");
+        if (enable) localStorage.removeItem(preferenceKey);
+        optedOut = disable || localStorage.getItem(preferenceKey) === "1";
+      } catch {
+        // Honor the opt-out link for this load if storage is unavailable.
+      }
+
+      if (disable || enable) {
+        url.searchParams.delete("analytics");
+        history.replaceState(history.state, "", url.pathname + url.search + url.hash);
+      }
+      if (optedOut) return;
+
+      const beacon = document.createElement("script");
+      beacon.type = "module";
+      beacon.src = "https://static.cloudflareinsights.com/beacon.min.js";
+      beacon.dataset.cfBeacon = JSON.stringify({
+        token: "f915e3fc2d614669a81a4e11cdd1842d"
+      });
+      document.body.append(beacon);
+    })();
+  </script>
 </body>
 </html>
