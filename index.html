@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Junseo Park, integrated M.S.–Ph.D. student at UNIST. Research, publications, and English and Korean CVs.">
+  <meta name="description" content="Junseo Park, integrated M.S.–Ph.D. student at UNIST. Publications, conference presentations, research projects, and CVs.">
   <title>Junseo Park | 박준서</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin>
   <style>
@@ -82,13 +82,7 @@
       text-transform: uppercase;
     }
     .masthead nav { display: flex; flex-wrap: wrap; gap: .45rem 1.25rem; font-size: .875rem; font-weight: 500; }
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-      align-items: center;
-      gap: 1.5rem;
-      padding-block: clamp(3rem, 8vw, 6rem);
-    }
+    .hero { padding-block: clamp(2.75rem, 7vw, 5rem); }
     h1 {
       font-size: clamp(2.85rem, 8vw, 6.25rem);
       font-weight: 900;
@@ -104,7 +98,6 @@
     }
     .affiliation { margin-top: 1.4rem; color: #dedede; font-weight: 500; }
     .affiliation .korean { display: block; margin-top: .2rem; color: #bcbcbc; font-weight: 400; }
-    .hero-art { width: 100%; height: auto; color: #fff; }
     .cv-links { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.4rem; }
     .cv-links a {
       display: inline-flex;
@@ -143,7 +136,7 @@
     .topic .summary .korean { display: block; color: #bcbcbc; margin-top: .5rem; font-size: .9em; }
     .topic .paper { display: inline-block; margin-top: .8rem; font-size: .9rem; }
 
-    .publications { border-top: 1px solid #5d5d5d; padding-block: 1.75rem 2rem; }
+    .publications, .record-section { border-top: 1px solid #5d5d5d; padding-block: 1.75rem 2rem; }
     .entries { list-style: none; margin: .8rem 0 0; padding: 0; }
     .entries li { padding-block: .8rem; overflow-wrap: anywhere; }
     .entries li + li { border-top: 1px solid #383838; }
@@ -151,6 +144,15 @@
     .entries p { margin-top: .22rem; font-size: .9rem; color: #d0d0d0; }
     .entries strong { color: #fff; font-weight: 700; }
     .entries .korean { color: #bcbcbc; }
+    .record-group {
+      border: 1px solid #5d5d5d;
+      background: #111;
+      margin-top: .75rem;
+    }
+    .record-group summary { cursor: pointer; padding: .8rem 1rem; font-weight: 700; }
+    .record-group summary:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    .record-group summary .korean { color: #bcbcbc; font-weight: 500; }
+    .record-group .entries { border-top: 1px solid #383838; margin: 0; padding-inline: 1rem; }
     .credentials {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -178,8 +180,6 @@
     .profiles a { display: inline-block; padding-block: .5rem; font-weight: 600; }
 
     @media (max-width: 45rem) {
-      .hero { grid-template-columns: 1fr; gap: .75rem; }
-      .hero-art { width: min(100%, 20rem); justify-self: end; }
       .topics, .credentials { grid-template-columns: 1fr; }
     }
   </style>
@@ -189,34 +189,26 @@
     <div class="masthead">
       <span class="eyebrow">Research profile</span>
       <nav aria-label="Page sections">
+        <a href="#cv">CV</a>
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
-        <a href="#cv">CV</a>
+        <a href="#presentations">Presentations</a>
+        <a href="#projects">Projects</a>
         <a href="#profiles">Profiles</a>
       </nav>
     </div>
 
     <header class="hero">
-      <div>
-        <h1>Junseo Park <span lang="ko" class="korean">박준서</span></h1>
-        <p class="affiliation">
-          Integrated M.S.–Ph.D. student · UNIST<br>
-          High-Impact Weather Prediction Laboratory (HWPL)
-          <span lang="ko" class="korean">UNIST 지구환경도시건설공학과 석박통합과정 · 재해기상예측연구실</span>
-        </p>
-        <div class="cv-links" id="cv">
-          <a href="cv/Junseo_Park_CV_EN.pdf">CV in English <small>(PDF)</small></a>
-          <a href="cv/Junseo_Park_CV_KO.pdf"><span lang="ko">국문 CV</span> <small>(PDF)</small></a>
-        </div>
+      <h1>Junseo Park <span lang="ko" class="korean">박준서</span></h1>
+      <p class="affiliation">
+        Integrated M.S.–Ph.D. student · UNIST<br>
+        High-Impact Weather Prediction Laboratory (HWPL)
+        <span lang="ko" class="korean">UNIST 지구환경도시건설공학과 석박통합과정 · 재해기상예측연구실</span>
+      </p>
+      <div class="cv-links" id="cv">
+        <a href="cv/Junseo_Park_CV_EN.pdf">CV in English <small>(PDF)</small></a>
+        <a href="cv/Junseo_Park_CV_KO.pdf"><span lang="ko">국문 CV</span> <small>(PDF)</small></a>
       </div>
-      <svg class="hero-art" viewBox="0 0 360 170" width="360" height="170" aria-hidden="true" focusable="false">
-        <g fill="none" stroke="currentColor">
-          <path opacity=".48" d="M2 132C66 130 91 115 126 79S205 24 244 44s65 69 114 73"/>
-          <path opacity=".65" d="M2 120c58-2 79-19 114-58S200 5 245 24s64 73 113 77"/>
-          <path d="M2 145c68-1 101-16 139-49s75-48 108-28 62 62 109 63"/>
-          <path opacity=".48" d="M2 158c76-1 117-14 153-42s61-38 93-20 65 50 110 49"/>
-        </g>
-      </svg>
     </header>
 
     <section class="research" aria-labelledby="research">
@@ -272,6 +264,204 @@
       </ul>
     </section>
 
+    <section class="record-section" aria-labelledby="presentations">
+      <h2 id="presentations" class="section-title">Conference Presentations <span lang="ko" class="korean">학술대회 발표</span></h2>
+      <details class="record-group">
+        <summary>Presented by Junseo Park <span lang="ko" class="korean">직접 발표</span> (14)</summary>
+        <ul class="entries">
+        <li>
+          <h3>River Discharge and Ocean Spin-Up Effects on Coupled Regional Climate Simulations Over CORDEX East Asia</h3>
+          <p>AOGS Annual Meeting · Oral (AS102) · Fukuoka, Japan · 4 Aug 2026</p>
+          <p><strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Role of Ocean Initialization and River Discharge in Coupled Regional Climate Simulations over East Asia</h3>
+          <p lang="ko" class="korean">동아시아 결합 지역기후모의에서 해양 초기화와 하천유출의 역할</p>
+          <p>KSCC First-Half Meeting · Poster · Seoul, South Korea · 25 Jun 2026</p>
+          <p><strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin, Uijeong Han, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Effects of River Discharge and Ocean Initialization on Coupled Regional Climate Simulations over East Asia</h3>
+          <p lang="ko" class="korean">동아시아에서 하천유출과 해양 초기화가 결합 지역기후 모의에 미치는 영향</p>
+          <p>Korean Meteorological Society Spring Meeting · Poster · Busan, South Korea · 11 May 2026</p>
+          <p><strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Ocean Spin-Up Effects on Coupled Regional Climate Simulations over CORDEX East Asia</h3>
+          <p>CORDEX East Asia Workshop · Poster · Kyoto, Japan · 5 Mar 2026</p>
+          <p><strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Impact of Atmosphere-Ocean Coupling on Regional Climate Downscaling over East Asia</h3>
+          <p>AOGS Annual Meeting · Oral (AS49) · Singapore · 29 Jul 2025</p>
+          <p><strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin, Taehyung Kim, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Performance Evaluation of a Regional Climate Model with Atmosphere–Ocean Interactions</h3>
+          <p lang="ko" class="korean">대기-해양 상호작용을 고려한 지역 기후 모델의 성능 평가</p>
+          <p>Korean Meteorological Society Spring Meeting · Poster · Seoul, South Korea · 13 May 2025</p>
+          <p><strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin, Taehyung Kim, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Influence of PBL-CPS Combinations and Resolution on the Simulation of East Asian Summer Monsoon Precipitation in 2022 Using WRF</h3>
+          <p>EGU General Assembly · Poster (EGU25-8015) · Vienna, Austria · 28 Apr 2025</p>
+          <p><strong>Junseo Park</strong>, Dong-Hyun Cha, Dong-Kyou Lee</p>
+        </li>
+        <li>
+          <h3>Effects of Planetary Boundary Layer and Cumulus Parameterization Schemes on the Simulation of the 2022 East Asian Summer Monsoon</h3>
+          <p lang="ko" class="korean">대기경계층 및 대류 모수화 방안이 2022년 동아시아 여름 몬순 모의에 미치는 영향</p>
+          <p>Korean Meteorological Society Fall Meeting · Poster (P-225) · Daegu, South Korea · 29 Oct 2024</p>
+          <p><strong>Junseo Park</strong>, Taeho Mun, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Analysis of Differences in WRF Simulations of East Asian Summer Monsoon in 2022 Based on Planetary Boundary Layer and Convective Parameterization Schemes</h3>
+          <p>International Conference on Mesoscale Convective Systems XVI · Poster (P-016) · Gyeongju, South Korea · 14 Oct 2024</p>
+          <p><strong>Junseo Park</strong>, Taeho Mun, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Sensitivity of East Asian Summer Precipitation in 2022 to Boundary Layer and Convection Schemes</h3>
+          <p>AOGS Annual Meeting · Poster (AS65) · Pyeongchang, South Korea · 25 Jun 2024</p>
+          <p><strong>Junseo Park</strong>, Eunji Kim, Haeun Jo, Taeho Mun, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Relationship Between Arctic Oscillation and PM2.5 Concentrations in Seoul: an Analysis Using ERA5 Data and WRF Model Assessments</h3>
+          <p>AOGS Annual Meeting · Poster (AS75) · Pyeongchang, South Korea · 25 Jun 2024</p>
+          <p><strong>Junseo Park</strong>, Woojin Cho, Taeho Mun, Hongjun Choi, Dong-Hyun Cha, Sung-Chul Hong, Min-Hyeok Choi, Jae-Bum Lee</p>
+        </li>
+        <li>
+          <h3>Differences in WRF Simulations of 2022 East Asian Summer Precipitation across Planetary Boundary Layer and Cumulus Parameterization Schemes</h3>
+          <p lang="ko" class="korean">대기경계층 및 대류 모수화 방안에 따른 WRF의 2022년 동아시아 여름 강수 모의 차이 분석</p>
+          <p>KSCC First-Half Meeting · Poster (P-13) · Seoul, South Korea · 20 Jun 2024</p>
+          <p><strong>Junseo Park</strong>, Taeho Mun, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Differences in WRF Simulations of 2022 East Asian Summer Precipitation across Planetary Boundary Layer Parameterization Schemes</h3>
+          <p lang="ko" class="korean">대기경계층 모수화 방안에 따른 WRF의 2022년 동아시아 여름 강수 모의 차이 분석</p>
+          <p>KSCC Fall Meeting · Poster (P-14) · Gyeongju, South Korea · 23 Nov 2023</p>
+          <p><strong>Junseo Park</strong>, Taeho Mun, Dong-Hyun Cha</p>
+        </li>
+        <li>
+          <h3>Impact of increasing model resolution on added values in regional climate simulation of heavy precipitation</h3>
+          <p>International Conference on Regional Climate–CORDEX · Poster (A2-P-21) · 26 Sep 2023</p>
+          <p><strong>Junseo Park</strong>, Gayoung Kim, Jineun Kim, Dong-Hyun Cha</p>
+        </li>
+        </ul>
+      </details>
+      <details class="record-group">
+        <summary>Co-authored Contributions <span lang="ko" class="korean">공동저자 참여</span> (16)</summary>
+        <ul class="entries">
+        <li>
+          <h3>Role of Air–Sea Interaction in Modulating Winter Temperature Biases over Northeast Asia in a Coupled Regional Climate Model</h3>
+          <p>AOGS Annual Meeting · Poster · Fukuoka, Japan · 5 Aug 2026</p>
+          <p>Seok-Woo Shin, Minkyu Lee, Changyong Park, Woojin Cho, <strong>Junseo Park</strong>, Dong-Hyun Cha</p>
+          <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1359447965&amp;range=B82:G82">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Development of Downscaled Climate Change Scenarios Using a Coupled Regional Climate Model</h3>
+          <p lang="ko" class="korean">결합지역기후모델을 이용한 상세화 기후변화 시나리오 산출 기술 개발</p>
+          <p>KSCC First-Half Meeting · Oral · Seoul, South Korea · 25 Jun 2026</p>
+          <p>Dong-Hyun Cha, <strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin, Uijeong Han</p>
+          <p>Presenter: Dong-Hyun Cha · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1359447965&amp;range=B58:G58">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Mechanisms Improving Northeast Asian Winter Temperature Simulations in an Atmosphere–Ocean Coupled Regional Climate Model</h3>
+          <p lang="ko" class="korean">대기-해양 결합 지역기후모델을 이용한 북동아시아 겨울철 기온 모의 개선 메커니즘 분석</p>
+          <p>KSCC First-Half Meeting · Oral · Seoul, South Korea · 25 Jun 2026</p>
+          <p>Seok-Woo Shin, Minkyu Lee, Changyong Park, Woojin Cho, <strong>Junseo Park</strong>, Uijeong Han, Dong-Hyun Cha</p>
+          <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1359447965&amp;range=B61:G61">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Establishing a High-Resolution Dynamical Downscaling Framework for East Asia Based on CORDEX-CORE</h3>
+          <p lang="ko" class="korean">CORDEX-CORE 기반 동아시아 지역기후고해상도 역학적 상세화 체계 구축</p>
+          <p>KSCC First-Half Meeting · Poster · Seoul, South Korea · 25 Jun 2026</p>
+          <p>Uijeong Han, Seok-Woo Shin, Taeho Mun, <strong>Junseo Park</strong>, Dong-Hyun Cha</p>
+          <p>Presenter: Uijeong Han · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1359447965&amp;range=B63:G63">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Winter Temperature Biases over Northeast Asia: An Atmosphere–Ocean Coupled Regional Climate Modeling Analysis</h3>
+          <p lang="ko" class="korean">동북아시아 겨울철 온도 계통오차 연구: 대기-해양 결합 지역기후모델링 기반 분석</p>
+          <p>Korean Meteorological Society Spring Meeting · Poster · Busan, South Korea · 11 May 2026</p>
+          <p>Seok-Woo Shin, Minkyu Lee, Changyong Park, Woojin Cho, <strong>Junseo Park</strong>, Uijeong Han, Dong-Hyun Cha</p>
+          <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1359447965&amp;range=B50:G50">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Understanding Winter Temperature Biases over Northeast Asia: Insights from Air–Sea Coupled Regional Climate Modeling</h3>
+          <p>CORDEX East Asia Workshop · Poster · Kyoto, Japan · 5 Mar 2026</p>
+          <p>Seok-Woo Shin, Minkyu Lee, Changyong Park, Woojin Cho, <strong>Junseo Park</strong>, Dong-Hyun Cha</p>
+          <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1359447965&amp;range=B29:G29">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Simulating Western North Pacific Tropical Cyclones Using a Coupled Regional Climate Model</h3>
+          <p lang="ko" class="korean">결합지역기후모델을 이용한 북서태평양 태풍 모의</p>
+          <p>KSCC Fall Meeting · Oral · Busan, South Korea · 3-5 Dec 2025 (conference dates)</p>
+          <p>Dong-Hyun Cha, <strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin</p>
+          <p>Presenter: Dong-Hyun Cha · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B114:G114">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Effects of the East Asian Winter Monsoon on Snowfall over the Korean Peninsula: A Regional Climate Model Approach</h3>
+          <p lang="ko" class="korean">동아시아 겨울 몬순이 한반도 강설에 미치는 영향 분석: 지역기후모델 기반 접근</p>
+          <p>KSCC Fall Meeting · Oral · Busan, South Korea · 3-5 Dec 2025 (conference dates)</p>
+          <p>Seok-Woo Shin, Minkyu Lee, Taeho Mun, <strong>Junseo Park</strong>, Jaeyeong Kim, Dong-Hyun Cha</p>
+          <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B118:G118">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Impact of Air-Sea Interaction on the Winter Temperature Simulation over East Asia with a Regional Climate Model</h3>
+          <p>AOGS Annual Meeting · Oral · Singapore · 29 Jul 2025</p>
+          <p>Seok-Woo Shin, Minkyu Lee, Woojin Cho, <strong>Junseo Park</strong>, Changyong Park, Dong-Hyun Cha</p>
+          <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B77:G77">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Running a Coupled Regional Climate Model over East Asia with Ocean Initialization</h3>
+          <p lang="ko" class="korean">해양 초기화를 이용한 동아시아 결합지역기후모델 구동</p>
+          <p>KSCC First-Half Meeting · Oral · Seoul, South Korea · 19 Jun 2025</p>
+          <p>Dong-Hyun Cha, <strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin</p>
+          <p>Presenter: Dong-Hyun Cha · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B54:G54">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Winter Temperature Biases over East Asia in a Regional Climate Model: Atmosphere–Ocean Coupling and PBL Parameterization Schemes</h3>
+          <p lang="ko" class="korean">지역기후모델을 이용한 동아시아 겨울철 온도 계통오차 연구: 대기-해양 결합모델링과 PBL 모수화 방안을 활용하여</p>
+          <p>KSCC First-Half Meeting · Oral · Seoul, South Korea · 19 Jun 2025</p>
+          <p>Seok-Woo Shin, Changyong Park, Minkyu Lee, Woojin Cho, <strong>Junseo Park</strong>, Eunji Kim, Uijeong Han, Dong-Hyun Cha</p>
+          <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B57:G57">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Effects of Atmosphere–Ocean Interactions on Regional Climate Model Simulations of East Asian Winter Temperatures</h3>
+          <p lang="ko" class="korean">지역기후모델을 이용한 동아시아 겨울철 온도 모의에서의 대기-해양 상호작용 영향 연구</p>
+          <p>Korean Meteorological Society Spring Meeting · Oral · Seoul, South Korea · 13 May 2025</p>
+          <p>Seok-Woo Shin, Minkyu Lee, Woojin Cho, <strong>Junseo Park</strong>, Changyong Park, Dong-Hyun Cha</p>
+          <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B44:G44">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Evaluating Particulate Matter Forecasts over Seoul by Arctic Oscillation Phase</h3>
+          <p lang="ko" class="korean">북극진동 위상에 따른 서울지역 미세먼지 예측성 평가</p>
+          <p>Korean Meteorological Society Spring Meeting · Oral · Seoul, South Korea · 12 May 2025</p>
+          <p>Taehyung Kim, <strong>Junseo Park</strong>, Mihye Seo, Dong-Hyun Cha, Sung-Chul Hong, Jae-Bum Lee</p>
+          <p>Presenter: Taehyung Kim · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B42:G42">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Regional Climate Simulation over East Asia Using a Coupled Regional Climate Model</h3>
+          <p lang="ko" class="korean">결합지역기후모델을 이용한 동아시아 지역기후모의</p>
+          <p>KSCC Fall Meeting · Oral · Jeju, South Korea · 28 Nov 2024</p>
+          <p>Dong-Hyun Cha, <strong>Junseo Park</strong>, Seok-Woo Shin</p>
+          <p>Presenter: Dong-Hyun Cha · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1698769006&amp;range=B113:G113">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Recent Changes and Related Factors of Tropical Night in the South Korea Metropolitan Area</h3>
+          <p>AOGS Annual Meeting · Poster · 1 Aug 2023</p>
+          <p>Taehun Kang, Donghyuck Yoon, <strong>Junseo Park</strong>, Dong-Hyun Cha</p>
+          <p>Presenter: Taehun Kang · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=483845385&amp;range=B95:G95">HWPL conference record</a></p>
+        </li>
+        <li>
+          <h3>Synoptic Patterns and Sea-Surface Temperature Effects on Tropical Nights in the Seoul Metropolitan Area</h3>
+          <p lang="ko" class="korean">수도권 열대야의 발생 종관패턴 및 SST 영향 분석</p>
+          <p>Korean Meteorological Society Spring Meeting · Poster · 20 Apr 2023</p>
+          <p>Taehun Kang, Donghyuck Yoon, <strong>Junseo Park</strong>, Dong-Hyun Cha</p>
+          <p>Presenter: Taehun Kang · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=483845385&amp;range=B43:G43">HWPL conference record</a></p>
+        </li>
+        </ul>
+      </details>
+    </section>
+
     <div class="credentials">
       <section aria-labelledby="education">
         <h2 id="education" class="section-title">Education <span lang="ko" class="korean">학력</span></h2>
@@ -312,6 +502,54 @@
         </ul>
       </section>
     </div>
+
+    <section class="record-section" aria-labelledby="projects">
+      <h2 id="projects" class="section-title">Research Projects <span lang="ko" class="korean">연구과제 참여</span></h2>
+      <ul class="entries">
+        <li>
+          <h3>Diagnosing the Causes of Subtropicalization of Precipitation over the Korean Peninsula Using the Multifaceted Capabilities of Convection-Permitting Models</h3>
+          <p lang="ko" class="korean">대류허용모델의 다면적 특성을 활용한 한반도 강수 아열대화의 원인 진단 연구</p>
+          <p>Project period: May 2024–Apr 2027 · Participating Researcher · Grant No. RS-2024-00350141</p>
+          <p>Lead institution: Ulsan National Institute of Science and Technology</p>
+        </li>
+        <li>
+          <h3>Development of Technologies for Diversifying Regional Climate Change Information</h3>
+          <p lang="ko" class="korean">지역 기후변화 정보 다원화기술 개발</p>
+          <p>Project period: Apr 2024–Dec 2026 · Participating Researcher · Grant No. RS-2024-00403386</p>
+          <p>Lead institution: Pohang University of Science and Technology</p>
+        </li>
+        <li>
+          <h3>Development of Technologies to Improve Intraseasonal Physical and Dynamical Processes in a Climate Prediction System</h3>
+          <p lang="ko" class="korean">기후예측시스템의 계절내 물리-역학 과정 향상기술 개발</p>
+          <p>Project period: Mar 2024–Dec 2026 · Participating Researcher</p>
+          <p>Lead institution: Seoul National University</p>
+        </li>
+        <li>
+          <h3>Dual-Polarization Radar Data Assimilation Using a Local Ensemble Kalman Filter</h3>
+          <p lang="ko" class="korean">국지앙상블 칼만필터를 적용한 이중편파레이더 자료동화 연구</p>
+          <p>Project period: Oct 2023–Dec 2023 · Participating Researcher</p>
+          <p>Lead institution: Kyungpook National University</p>
+        </li>
+        <li>
+          <h3>Effects of Multiscale Physical Parameterization Schemes on Mesoscale Simulations Using a High-Resolution Numerical Model</h3>
+          <p lang="ko" class="korean">고해상도 수치모델을 이용한 다중규모물리과정방안의 중규모현상 모의 영향 연구</p>
+          <p>Project period: Sep 2023–Feb 2024 · Participating Researcher · Grant No. NRF-2022R1F1A1076381</p>
+          <p>Lead institution: Ulsan National Institute of Science and Technology</p>
+        </li>
+        <li>
+          <h3>Investigation and prediction system development of marine heatwave around the Korean Peninsula originated from the subarctic and western Pacific</h3>
+          <p lang="ko" class="korean">아북극-서태평양 기인 한반도 주변 고수온 현상 규명 및 예측시스템 구축</p>
+          <p>Project period: Jun 2023–Aug 2023 · Participating Researcher · Grant No. 20190344 / RS-2019-KS191260</p>
+          <p>Lead institution: Korea Institute of Ocean Science and Technology</p>
+        </li>
+        <li>
+          <h3>Development of Technologies for Producing and Analyzing Disaster Prevention Information Based on AR6 SSP-RCP Scenarios</h3>
+          <p lang="ko" class="korean">AR6 SSP-RCP 시나리오 기반 방재정보 산출 및 분석 기술개발</p>
+          <p>Project period: Jan 2023–Dec 2023 · Participating Researcher · Grant No. KMI2021-00913</p>
+          <p>Lead institution: Ulsan National Institute of Science and Technology</p>
+        </li>
+      </ul>
+    </section>
 
     <section class="profiles" aria-labelledby="profiles">
       <h2 id="profiles" class="section-title">Academic links <span lang="ko" class="korean">연구 링크</span></h2>
