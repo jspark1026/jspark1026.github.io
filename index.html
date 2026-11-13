@@ -61,7 +61,7 @@
     }
     * { box-sizing: border-box; }
     body { margin: 0; }
-    main { width: min(100% - 2rem, 68rem); margin-inline: auto; }
+    main { width: min(100% - 2rem, 68rem); margin-inline: auto; container-type: inline-size; }
     h1, h2, h3, p { margin: 0; }
     a { color: inherit; text-underline-offset: .23em; }
     a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
@@ -82,14 +82,18 @@
       text-transform: uppercase;
     }
     .masthead nav { display: flex; flex-wrap: wrap; gap: .45rem 1.25rem; font-size: .875rem; font-weight: 500; }
-    .hero { padding-block: clamp(2.75rem, 7vw, 5rem); }
-    .hero-identity {
-      display: flex;
+    .hero {
+      --portrait-width: min(51svh, 60cqw);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) var(--portrait-width);
       align-items: center;
-      gap: clamp(.75rem, 3vw, 2.25rem);
+      gap: clamp(1.25rem, 3vw, 2.5rem);
+      /* A 3:4 portrait with one-eighth of its height as padding on each side. */
+      padding-block: calc(var(--portrait-width) / 6);
     }
-    h1 {
-      font-size: clamp(2.85rem, 8vw, 6.25rem);
+    .hero-copy { container-type: inline-size; }
+    .hero h1 {
+      font-size: clamp(2.85rem, 18cqw, 6.25rem);
       font-weight: 900;
       line-height: 1.06;
       letter-spacing: -.065em;
@@ -103,8 +107,8 @@
     }
     .hero-portrait {
       display: block;
-      flex: none;
-      width: clamp(4.75rem, 22vw, 11rem);
+      justify-self: end;
+      width: 100%;
       height: auto;
       border: 1px solid #5d5d5d;
       border-radius: .35rem;
@@ -206,6 +210,8 @@
     .profiles a { display: inline-block; padding-block: .5rem; font-weight: 600; }
 
     @media (max-width: 45rem) {
+      .hero { grid-template-columns: 1fr; padding-block: 2rem; }
+      .hero-portrait { justify-self: start; width: min(60svh, 100%); }
       .topics, .credentials { grid-template-columns: 1fr; }
     }
     @media (max-width: 30rem) {
@@ -228,23 +234,23 @@
     </div>
 
     <header class="hero">
-      <div class="hero-identity">
+      <div class="hero-copy">
         <h1>Junseo Park <span lang="ko" class="korean">박준서</span></h1>
-        <img class="hero-portrait" src="assets/junseo-park-portrait.jpg" width="720" height="960" alt="Portrait of Junseo Park" decoding="async">
+        <p class="affiliation">
+          Integrated M.S.–Ph.D. student · UNIST<br>
+          High-Impact Weather Prediction Laboratory (HWPL)
+          <span lang="ko" class="korean">UNIST 지구환경도시건설공학과 석박통합과정 · 재해기상예측연구실</span>
+        </p>
+        <div class="cv-links" id="cv">
+          <a href="cv/Junseo_Park_CV_EN.pdf">CV in English <small>(PDF)</small></a>
+          <a href="cv/Junseo_Park_CV_KO.pdf"><span lang="ko">국문 CV</span> <small>(PDF)</small></a>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:junseo1026@unist.ac.kr">junseo1026@unist.ac.kr</a>
+          <a href="https://orcid.org/0009-0006-8169-6709">ORCID <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
-      <p class="affiliation">
-        Integrated M.S.–Ph.D. student · UNIST<br>
-        High-Impact Weather Prediction Laboratory (HWPL)
-        <span lang="ko" class="korean">UNIST 지구환경도시건설공학과 석박통합과정 · 재해기상예측연구실</span>
-      </p>
-      <div class="cv-links" id="cv">
-        <a href="cv/Junseo_Park_CV_EN.pdf">CV in English <small>(PDF)</small></a>
-        <a href="cv/Junseo_Park_CV_KO.pdf"><span lang="ko">국문 CV</span> <small>(PDF)</small></a>
-      </div>
-      <div class="contact-links">
-        <a href="mailto:junseo1026@unist.ac.kr">junseo1026@unist.ac.kr</a>
-        <a href="https://orcid.org/0009-0006-8169-6709">ORCID <span aria-hidden="true">↗</span></a>
-      </div>
+      <img class="hero-portrait" src="assets/junseo-park-portrait.jpg" width="720" height="960" alt="Portrait of Junseo Park" decoding="async">
     </header>
 
     <section class="research" aria-labelledby="research">
@@ -312,9 +318,24 @@
             <p><a href="presentations/aogs-2026-selected-slides.pdf">Selected slides (PDF)</a></p>
           </li>
           <li>
+            <h4>Ocean Spin-Up Effects on Coupled Regional Climate Simulations over CORDEX East Asia</h4>
+            <p>CORDEX East Asia Workshop · Poster P21 · Kyoto · March 2026</p>
+            <p><a href="presentations/cordex-kyoto-2026-poster.pdf">Poster (PDF)</a></p>
+          </li>
+          <li>
+            <h4>Performance Evaluation of a Regional Climate Model with Atmosphere–Ocean Interactions</h4>
+            <p>Korean Meteorological Society Spring Meeting · Poster P-140 · Seoul · May 2025</p>
+            <p><a href="presentations/kms-2025-spring-poster.pdf">Poster (PDF)</a></p>
+          </li>
+          <li>
             <h4>Influence of PBL-CPS Combinations and Resolution on the Simulation of East Asian Summer Monsoon Precipitation in 2022 Using WRF</h4>
             <p>EGU General Assembly · Poster EGU25-8015 · Vienna · April 2025</p>
             <p><a href="presentations/egu-2025-poster.pdf">Poster (PDF)</a> · <a href="https://meetingorganizer.copernicus.org/EGU25/EGU25-8015.html">Conference abstract</a></p>
+          </li>
+          <li>
+            <h4>Relationship Between Arctic Oscillation and PM2.5 Concentrations in Seoul: an Analysis Using ERA5 Data and WRF Model Assessments</h4>
+            <p>AOGS Annual Meeting · Poster AS75-A024 · Pyeongchang · June 2024</p>
+            <p><a href="presentations/aogs-2024-pm25-poster.pdf">Poster (PDF)</a></p>
           </li>
         </ul>
       </section>
