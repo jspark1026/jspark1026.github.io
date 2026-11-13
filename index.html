@@ -61,7 +61,7 @@
     }
     * { box-sizing: border-box; }
     body { margin: 0; }
-    main { width: min(100% - 2rem, 68rem); margin-inline: auto; container-type: inline-size; }
+    main { width: min(100% - 2rem, 68rem); margin-inline: auto; }
     h1, h2, h3, p { margin: 0; }
     a { color: inherit; text-underline-offset: .23em; }
     a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
@@ -83,13 +83,11 @@
     }
     .masthead nav { display: flex; flex-wrap: wrap; gap: .45rem 1.25rem; font-size: .875rem; font-weight: 500; }
     .hero {
-      --portrait-width: min(51svh, 60cqw);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) var(--portrait-width);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 38%);
       align-items: center;
       gap: clamp(1.25rem, 3vw, 2.5rem);
-      /* A 3:4 portrait with one-eighth of its height as padding on each side. */
-      padding-block: calc(var(--portrait-width) / 6);
+      padding-block: clamp(2rem, 6vw, 4rem);
     }
     .hero-copy { container-type: inline-size; }
     .hero h1 {
@@ -108,7 +106,7 @@
     .hero-portrait {
       display: block;
       justify-self: end;
-      width: 100%;
+      width: min(100%, var(--portrait-width, 11.25rem));
       height: auto;
       border: 1px solid #5d5d5d;
       border-radius: .35rem;
@@ -183,6 +181,41 @@
     .selected-talks { margin-block: .9rem 1.25rem; }
     .selected-talks h3 { font-size: 1.05rem; }
     .selected-talks h4 { margin: 0; font-size: 1rem; line-height: 1.45; }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .media-grid > li, .entries.media-grid > li + li {
+      border: 1px solid #5d5d5d;
+      background: #111;
+      padding: 1rem;
+    }
+    .media-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .media-preview {
+      position: relative;
+      display: block;
+      aspect-ratio: 4 / 3;
+      margin-top: auto;
+      background: #1a1a1a;
+      border: 1px solid #5d5d5d;
+    }
+    .media-preview img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: .6rem;
+      object-fit: contain;
+    }
+    .media-card .media-actions { margin-block: .65rem .85rem; }
+    .record-group .media-grid { padding-block: 1rem; }
+    .research-excerpts { padding-bottom: 2rem; }
+    .research-excerpts > h3 { font-size: 1.05rem; }
     .credentials {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -211,8 +244,8 @@
 
     @media (max-width: 45rem) {
       .hero { grid-template-columns: 1fr; padding-block: 2rem; }
-      .hero-portrait { justify-self: start; width: min(60svh, 100%); }
-      .topics, .credentials { grid-template-columns: 1fr; }
+      .hero-portrait { justify-self: start; }
+      .topics, .credentials, .media-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 30rem) {
       .hero h1 { font-size: clamp(2rem, 10vw, 2.85rem); }
@@ -283,11 +316,32 @@
           </p>
         </li>
       </ul>
+      <section class="research-excerpts" aria-labelledby="cordex-excerpts">
+        <h3 id="cordex-excerpts">CORDEX research figures <span lang="ko" class="korean">· 연구보고 발췌</span></h3>
+        <ul class="entries media-grid">
+          <li class="media-card">
+            <h4>CORDEX Interim Report</h4>
+            <p lang="ko" class="korean">중간보고 · 동아시아 강수 모의와 해수면 염분</p>
+            <p class="media-actions"><a href="research/cordex-midterm-excerpts.pdf">View figures (PDF)</a></p>
+            <a class="media-preview" href="research/cordex-midterm-excerpts.pdf" aria-label="Open CORDEX interim report figures PDF">
+              <img src="research/cordex-midterm-excerpts.webp" alt="Precipitation maps from the CORDEX interim report" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li class="media-card">
+            <h4>CORDEX Final Report</h4>
+            <p lang="ko" class="korean">최종보고 · 해양 스핀업과 해수면 온도·염분 모의</p>
+            <p class="media-actions"><a href="research/cordex-final-excerpts.pdf">View figures (PDF)</a></p>
+            <a class="media-preview" href="research/cordex-final-excerpts.pdf" aria-label="Open CORDEX final report figures PDF">
+              <img src="research/cordex-final-excerpts.webp" alt="Ocean spin-up charts from the CORDEX final report" loading="lazy" decoding="async">
+            </a>
+          </li>
+        </ul>
+      </section>
     </section>
 
     <section class="publications" aria-labelledby="publications">
       <h2 id="publications" class="section-title">Publications <span lang="ko" class="korean">학술지 논문</span></h2>
-      <ul class="entries">
+      <ul class="entries media-grid">
         <li id="heatwaves-paper">
           <h3><a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1932600/full">Assessing anthropogenic thermodynamic influences on marine heatwaves near the Korean Peninsula using a coupled regional climate model</a></h3>
           <p>Kim, Y.-H., Cho, W., Kang, T., <strong>Park, J.</strong>, Park, C., Kim, T., Cha, D.-H., Jun, S.-Y., &amp; Min, S.-K.</p>
@@ -311,37 +365,42 @@
       <h2 id="presentations" class="section-title">Conference Presentations <span lang="ko" class="korean">학술대회 발표</span></h2>
       <section class="selected-talks" aria-labelledby="selected-talks">
         <h3 id="selected-talks">Selected presentations <span lang="ko" class="korean">· 대표 발표</span></h3>
-        <ul class="entries">
-          <li>
+        <ul class="entries media-grid">
+          <li class="media-card">
             <h4>River Discharge and Ocean Spin-Up Effects on Coupled Regional Climate Simulations Over CORDEX East Asia</h4>
             <p>AOGS Annual Meeting · Oral AS102 · Fukuoka · August 2026</p>
-            <p><a href="presentations/aogs-2026-selected-slides.pdf">Selected slides (PDF)</a></p>
+            <p class="media-actions"><a href="presentations/aogs-2026-slides.pdf">Conference slides (PDF · 38 pages)</a></p>
+            <a class="media-preview" href="presentations/aogs-2026-slides.pdf" aria-label="Open all 38 AOGS 2026 conference slides"><img src="presentations/aogs-2026-selected-slides.webp" alt="AOGS 2026 slide summarizing the coupled model results" width="1000" height="563" loading="lazy" decoding="async"></a>
           </li>
-          <li>
+          <li class="media-card">
             <h4>Ocean Spin-Up Effects on Coupled Regional Climate Simulations over CORDEX East Asia</h4>
             <p>CORDEX East Asia Workshop · Poster P21 · Kyoto · March 2026</p>
-            <p><a href="presentations/cordex-kyoto-2026-poster.pdf">Poster (PDF)</a></p>
+            <p class="media-actions"><a href="presentations/cordex-kyoto-2026-poster.pdf">Poster (PDF)</a></p>
+            <a class="media-preview" href="presentations/cordex-kyoto-2026-poster.pdf" aria-label="Open CORDEX Kyoto 2026 poster PDF"><img src="presentations/cordex-kyoto-2026-poster.webp" alt="CORDEX Kyoto 2026 poster on ocean spin-up" width="708" height="1000" loading="lazy" decoding="async"></a>
           </li>
-          <li>
+          <li class="media-card">
             <h4>Performance Evaluation of a Regional Climate Model with Atmosphere–Ocean Interactions</h4>
             <p>Korean Meteorological Society Spring Meeting · Poster P-140 · Seoul · May 2025</p>
-            <p><a href="presentations/kms-2025-spring-poster.pdf">Poster (PDF)</a></p>
+            <p class="media-actions"><a href="presentations/kms-2025-spring-poster.pdf">Poster (PDF)</a></p>
+            <a class="media-preview" href="presentations/kms-2025-spring-poster.pdf" aria-label="Open KMS Spring 2025 poster PDF"><img src="presentations/kms-2025-spring-poster.webp" alt="KMS Spring 2025 poster on coupled regional climate modeling" width="643" height="1000" loading="lazy" decoding="async"></a>
           </li>
-          <li>
+          <li class="media-card">
             <h4>Influence of PBL-CPS Combinations and Resolution on the Simulation of East Asian Summer Monsoon Precipitation in 2022 Using WRF</h4>
             <p>EGU General Assembly · Poster EGU25-8015 · Vienna · April 2025</p>
-            <p><a href="presentations/egu-2025-poster.pdf">Poster (PDF)</a> · <a href="https://meetingorganizer.copernicus.org/EGU25/EGU25-8015.html">Conference abstract</a></p>
+            <p class="media-actions"><a href="presentations/egu-2025-poster.pdf">Poster (PDF)</a> · <a href="https://meetingorganizer.copernicus.org/EGU25/EGU25-8015.html">Conference abstract</a></p>
+            <a class="media-preview" href="presentations/egu-2025-poster.pdf" aria-label="Open EGU 2025 poster PDF"><img src="presentations/egu-2025-poster.webp" alt="EGU 2025 poster on WRF monsoon precipitation simulations" width="1000" height="708" loading="lazy" decoding="async"></a>
           </li>
-          <li>
+          <li class="media-card">
             <h4>Relationship Between Arctic Oscillation and PM2.5 Concentrations in Seoul: an Analysis Using ERA5 Data and WRF Model Assessments</h4>
             <p>AOGS Annual Meeting · Poster AS75-A024 · Pyeongchang · June 2024</p>
-            <p><a href="presentations/aogs-2024-pm25-poster.pdf">Poster (PDF)</a></p>
+            <p class="media-actions"><a href="presentations/aogs-2024-pm25-poster.pdf">Poster (PDF)</a></p>
+            <a class="media-preview" href="presentations/aogs-2024-pm25-poster.pdf" aria-label="Open AOGS 2024 poster PDF"><img src="presentations/aogs-2024-pm25-poster.webp" alt="AOGS 2024 poster on the Arctic Oscillation and Seoul PM2.5" width="708" height="1000" loading="lazy" decoding="async"></a>
           </li>
         </ul>
       </section>
       <details class="record-group">
         <summary>Presented by Junseo Park <span lang="ko" class="korean">직접 발표</span> (14)</summary>
-        <ul class="entries">
+        <ul class="entries media-grid">
         <li>
           <h3>River Discharge and Ocean Spin-Up Effects on Coupled Regional Climate Simulations Over CORDEX East Asia</h3>
           <p>AOGS Annual Meeting · Oral (AS102) · Fukuoka, Japan · 4 Aug 2026</p>
@@ -422,7 +481,7 @@
       </details>
       <details class="record-group">
         <summary>Co-authored Contributions <span lang="ko" class="korean">공동저자 참여</span> (16)</summary>
-        <ul class="entries">
+        <ul class="entries media-grid">
         <li>
           <h3>Role of Air–Sea Interaction in Modulating Winter Temperature Biases over Northeast Asia in a Coupled Regional Climate Model</h3>
           <p>AOGS Annual Meeting · Poster · Fukuoka, Japan · 5 Aug 2026</p>
@@ -635,6 +694,22 @@
       </ul>
     </section>
   </main>
+  <script>
+    const heroCopy = document.querySelector(".hero-copy");
+    const heroName = heroCopy.querySelector("h1");
+    const heroEmail = heroCopy.querySelector('a[href^="mailto:"]');
+    const heroPortrait = document.querySelector(".hero-portrait");
+    const portraitRatio = Number(heroPortrait.getAttribute("width")) / Number(heroPortrait.getAttribute("height"));
+
+    function sizePortrait() {
+      const textHeight = heroEmail.getBoundingClientRect().bottom - heroName.getBoundingClientRect().top;
+      const imageWidth = textHeight * .8 * portraitRatio;
+      heroPortrait.style.setProperty("--portrait-width", `${imageWidth}px`);
+    }
+
+    new ResizeObserver(sizePortrait).observe(heroCopy);
+    sizePortrait();
+  </script>
   <script>
     (() => {
       const preferenceKey = "web-analytics-opt-out";
