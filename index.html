@@ -102,21 +102,12 @@
       letter-spacing: -.035em;
     }
     .hero-portrait {
-      position: relative;
+      display: block;
       flex: none;
-      width: clamp(4.25rem, 18vw, 9rem);
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
+      width: clamp(4.75rem, 22vw, 11rem);
+      height: auto;
       border: 1px solid #5d5d5d;
       border-radius: .35rem;
-    }
-    .hero-portrait img {
-      position: absolute;
-      display: block;
-      width: 180%;
-      height: auto;
-      left: -40%;
-      top: -78%;
     }
     .affiliation { margin-top: 1.4rem; color: #dedede; font-weight: 500; }
     .affiliation .korean { display: block; margin-top: .2rem; color: #bcbcbc; font-weight: 400; }
@@ -135,6 +126,16 @@
     .cv-links a:hover { text-decoration: underline; }
     .cv-links a:focus-visible { outline-color: #fff; }
     .cv-links small { font-size: .75rem; font-weight: 500; }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .25rem 1rem;
+      margin-top: .55rem;
+      color: #dedede;
+      font-size: .9rem;
+    }
+    .contact-links a { padding-block: .35rem; }
 
     .section-title { font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 800; letter-spacing: -.035em; }
     .section-title .korean { margin-left: .4em; font-size: .67em; font-weight: 600; }
@@ -175,6 +176,9 @@
     .record-group summary:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
     .record-group summary .korean { color: #bcbcbc; font-weight: 500; }
     .record-group .entries { border-top: 1px solid #383838; margin: 0; padding-inline: 1rem; }
+    .selected-talks { margin-block: .9rem 1.25rem; }
+    .selected-talks h3 { font-size: 1.05rem; }
+    .selected-talks h4 { margin: 0; font-size: 1rem; line-height: 1.45; }
     .credentials {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -226,9 +230,7 @@
     <header class="hero">
       <div class="hero-identity">
         <h1>Junseo Park <span lang="ko" class="korean">박준서</span></h1>
-        <div class="hero-portrait">
-          <img src="assets/junseo-park-portrait.jpg" width="720" height="960" alt="Portrait of Junseo Park" decoding="async">
-        </div>
+        <img class="hero-portrait" src="assets/junseo-park-portrait.jpg" width="720" height="960" alt="Portrait of Junseo Park" decoding="async">
       </div>
       <p class="affiliation">
         Integrated M.S.–Ph.D. student · UNIST<br>
@@ -238,6 +240,10 @@
       <div class="cv-links" id="cv">
         <a href="cv/Junseo_Park_CV_EN.pdf">CV in English <small>(PDF)</small></a>
         <a href="cv/Junseo_Park_CV_KO.pdf"><span lang="ko">국문 CV</span> <small>(PDF)</small></a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:junseo1026@unist.ac.kr">junseo1026@unist.ac.kr</a>
+        <a href="https://orcid.org/0009-0006-8169-6709">ORCID <span aria-hidden="true">↗</span></a>
       </div>
     </header>
 
@@ -277,9 +283,10 @@
       <h2 id="publications" class="section-title">Publications <span lang="ko" class="korean">학술지 논문</span></h2>
       <ul class="entries">
         <li id="heatwaves-paper">
-          <h3><a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1932600/abstract">Assessing anthropogenic thermodynamic influences on marine heatwaves near the Korean Peninsula using a coupled regional climate model</a></h3>
-          <p>Kim, Y.-H., Cho, W., Kang, T., <strong>Park, J.</strong>, Cha, D.-H., Jun, S.-Y., &amp; Min, S.-K.</p>
-          <p><i>Frontiers in Marine Science</i> · Accepted 28 Oct 2026 <span lang="ko" class="korean">(게재 승인)</span></p>
+          <h3><a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1932600/full">Assessing anthropogenic thermodynamic influences on marine heatwaves near the Korean Peninsula using a coupled regional climate model</a></h3>
+          <p>Kim, Y.-H., Cho, W., Kang, T., <strong>Park, J.</strong>, Park, C., Kim, T., Cha, D.-H., Jun, S.-Y., &amp; Min, S.-K.</p>
+          <p><i>Frontiers in Marine Science</i> · 13, 1932600 · Published 12 Nov 2026</p>
+          <p><a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1932600/pdf">Publisher PDF</a></p>
         </li>
         <li>
           <h3><a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2025JD044820">Spatiotemporal Characteristics of Mesoscale Convective Systems Over East Asian Monsoon Region Simulated by a Convection-Permitting Model</a></h3>
@@ -296,6 +303,21 @@
 
     <section class="record-section" aria-labelledby="presentations">
       <h2 id="presentations" class="section-title">Conference Presentations <span lang="ko" class="korean">학술대회 발표</span></h2>
+      <section class="selected-talks" aria-labelledby="selected-talks">
+        <h3 id="selected-talks">Selected presentations <span lang="ko" class="korean">· 대표 발표</span></h3>
+        <ul class="entries">
+          <li>
+            <h4>River Discharge and Ocean Spin-Up Effects on Coupled Regional Climate Simulations Over CORDEX East Asia</h4>
+            <p>AOGS Annual Meeting · Oral AS102 · Fukuoka · August 2026</p>
+            <p><a href="presentations/aogs-2026-selected-slides.pdf">Selected slides (PDF)</a></p>
+          </li>
+          <li>
+            <h4>Influence of PBL-CPS Combinations and Resolution on the Simulation of East Asian Summer Monsoon Precipitation in 2022 Using WRF</h4>
+            <p>EGU General Assembly · Poster EGU25-8015 · Vienna · April 2025</p>
+            <p><a href="presentations/egu-2025-poster.pdf">Poster (PDF)</a> · <a href="https://meetingorganizer.copernicus.org/EGU25/EGU25-8015.html">Conference abstract</a></p>
+          </li>
+        </ul>
+      </section>
       <details class="record-group">
         <summary>Presented by Junseo Park <span lang="ko" class="korean">직접 발표</span> (14)</summary>
         <ul class="entries">
