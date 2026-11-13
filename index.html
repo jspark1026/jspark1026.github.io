@@ -61,7 +61,7 @@
     }
     * { box-sizing: border-box; }
     body { margin: 0; }
-    main { width: min(100% - 2rem, 68rem); margin-inline: auto; }
+    main { width: min(calc(100% - clamp(2rem, 5vw, 4rem)), 80rem); margin-inline: auto; }
     h1, h2, h3, p { margin: 0; }
     a { color: inherit; text-underline-offset: .23em; }
     a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
@@ -141,14 +141,35 @@
 
     .section-title { font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 800; letter-spacing: -.035em; }
     .section-title .korean { margin-left: .4em; font-size: .67em; font-weight: 600; }
-    .research { border-top: 1px solid #5d5d5d; padding-top: 1.75rem; }
+    .foldable > summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 2.75rem;
+      align-items: center;
+      gap: .65rem;
+      min-height: 44px;
+      list-style: none;
+      cursor: pointer;
+    }
+    .foldable > summary::-webkit-details-marker { display: none; }
+    .foldable > summary::after {
+      content: "";
+      justify-self: center;
+      width: .6rem;
+      height: .6rem;
+      border: solid currentColor;
+      border-width: 0 2px 2px 0;
+      transform: translateY(-.12rem) rotate(45deg);
+    }
+    .foldable[open] > summary::after { transform: translateY(.12rem) rotate(225deg); }
+    .foldable > summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+    .research { border-top: 1px solid #5d5d5d; padding-block: 1.75rem 2rem; }
     .topics {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
       list-style: none;
       padding: 0;
-      margin: 1.1rem 0 2rem;
+      margin: 1.1rem 0 0;
     }
     .topic {
       padding: 1.25rem;
@@ -214,15 +235,24 @@
     }
     .media-card .media-actions { margin-block: .65rem .85rem; }
     .record-group .media-grid { padding-block: 1rem; }
-    .research-excerpts { padding-bottom: 2rem; }
-    .research-excerpts > h3 { font-size: 1.05rem; }
+    .paper-feature {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: 1rem;
+    }
+    .paper-figure { margin: 0; }
+    .paper-figure a { display: block; }
+    .paper-figure img { display: block; width: 100%; height: auto; }
+    .paper-figure figcaption { color: #bcbcbc; font-size: .8rem; margin-top: .35rem; }
     .credentials {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1rem;
       margin-bottom: 2rem;
     }
-    .credentials section { padding: 1.25rem; border: 1px solid #5d5d5d; background: #111; }
+    .credentials > details { align-self: start; padding: 1.25rem; border: 1px solid #5d5d5d; background: #111; }
     .credentials .entries li:last-child { padding-bottom: 0; }
 
     .profiles {
@@ -245,7 +275,7 @@
     @media (max-width: 45rem) {
       .hero { grid-template-columns: 1fr; padding-block: 2rem; }
       .hero-portrait { justify-self: start; }
-      .topics, .credentials, .media-grid { grid-template-columns: 1fr; }
+      .topics, .credentials, .media-grid, .paper-feature { grid-template-columns: 1fr; }
     }
     @media (max-width: 30rem) {
       .hero h1 { font-size: clamp(2rem, 10vw, 2.85rem); }
@@ -286,8 +316,8 @@
       <img class="hero-portrait" src="assets/junseo-park-portrait.jpg" width="720" height="960" alt="Portrait of Junseo Park" decoding="async">
     </header>
 
-    <section class="research" aria-labelledby="research">
-      <h2 id="research" class="section-title">Research <span lang="ko" class="korean">연구 분야</span></h2>
+    <details class="research foldable" aria-labelledby="research" open>
+      <summary><h2 id="research" class="section-title">Research <span lang="ko" class="korean">연구 분야</span></h2></summary>
       <ul class="topics">
         <li class="topic">
           <h3>Regional Climate Modeling &amp; CORDEX
@@ -316,57 +346,42 @@
           </p>
         </li>
       </ul>
-      <section class="research-excerpts" aria-labelledby="cordex-excerpts">
-        <h3 id="cordex-excerpts">CORDEX research figures <span lang="ko" class="korean">· 연구보고 발췌</span></h3>
-        <ul class="entries media-grid">
-          <li class="media-card">
-            <h4 id="cordex-interim-report">CORDEX Interim Report (2026)</h4>
-            <p lang="ko" class="korean">중간보고 · 동아시아 강수 모의와 해수면 염분</p>
-            <p>See the regional ocean evaluation in the <a href="#kscc-2026-spring">2026 KSCC spring poster</a>.</p>
-            <p class="media-actions"><a href="research/cordex-midterm-excerpts.pdf">View figures (PDF)</a></p>
-            <a class="media-preview" href="research/cordex-midterm-excerpts.pdf" aria-label="Open CORDEX interim report figures PDF">
-              <img src="research/cordex-midterm-excerpts.webp" width="1601" height="699" alt="Precipitation maps from the CORDEX interim report" loading="lazy" decoding="async">
-            </a>
-          </li>
-          <li class="media-card">
-            <h4>CORDEX Second-Year Final Report (2025)</h4>
-            <p lang="ko" class="korean">최종보고 · 해양 스핀업과 해수면 온도·염분 모의</p>
-            <p>Related 2025 KSCC project talks co-authored by Junseo Park: <a href="#kscc-2025-spring">spring</a> and <a href="#kscc-2025-fall">fall</a>.</p>
-            <p class="media-actions"><a href="research/cordex-final-excerpts.pdf">View figures (PDF)</a></p>
-            <a class="media-preview" href="research/cordex-final-excerpts.pdf" aria-label="Open CORDEX final report figures PDF">
-              <img src="research/cordex-final-excerpts.webp" width="1601" height="589" alt="Ocean spin-up charts from the CORDEX final report" loading="lazy" decoding="async">
-            </a>
-          </li>
-        </ul>
-      </section>
-    </section>
+    </details>
 
-    <section class="publications" aria-labelledby="publications">
-      <h2 id="publications" class="section-title">Publications <span lang="ko" class="korean">학술지 논문</span></h2>
+    <details class="publications foldable" aria-labelledby="publications" open>
+      <summary><h2 id="publications" class="section-title">Publications <span lang="ko" class="korean">학술지 논문</span></h2></summary>
       <ul class="entries media-grid">
+        <li id="monsoon-paper" class="paper-feature">
+          <div>
+            <h3><a href="https://doi.org/10.14383/cri.2025.20.1.27">Assessment of Planetary Boundary Layer and Cumulus Parameterization Schemes on 2022 East Asian Summer Monsoon Simulation</a></h3>
+            <p><strong>Park, J.</strong> &amp; Cha, D.-H.</p>
+            <p><i>Journal of Climate Research</i> · 2025 · 20(1), 27–42</p>
+            <p><a href="https://www.konkuk.ac.kr/sites/kucri/files/down/20-1_2.pdf">Read publisher PDF</a></p>
+          </div>
+          <figure class="paper-figure">
+            <a href="https://www.konkuk.ac.kr/sites/kucri/files/down/20-1_2.pdf" aria-label="Open the publisher PDF for the East Asian summer monsoon study">
+              <img src="assets/monsoon-2025-figure-2.webp" width="1801" height="764" alt="Maps comparing observed and simulated mean summer precipitation in three nested domains" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Fig. 2 from Park and Cha (2025) · June–August 2022 mean precipitation</figcaption>
+          </figure>
+        </li>
         <li id="heatwaves-paper">
           <h3><a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1932600/full">Assessing anthropogenic thermodynamic influences on marine heatwaves near the Korean Peninsula using a coupled regional climate model</a></h3>
           <p>Kim, Y.-H., Cho, W., Kang, T., <strong>Park, J.</strong>, Park, C., Kim, T., Cha, D.-H., Jun, S.-Y., &amp; Min, S.-K.</p>
           <p><i>Frontiers in Marine Science</i> · 13, 1932600 · Published 12 Nov 2026</p>
-          <p><a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1932600/pdf">Publisher PDF</a></p>
         </li>
         <li>
           <h3><a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2025JD044820">Spatiotemporal Characteristics of Mesoscale Convective Systems Over East Asian Monsoon Region Simulated by a Convection-Permitting Model</a></h3>
           <p>Mun, T., Park, H., <strong>Park, J.</strong>, Cha, D.-H., Lee, M.-I., Son, S.-W., &amp; Min, S.-K.</p>
           <p><i>Journal of Geophysical Research: Atmospheres</i> · 2025 · 130(24), e2025JD044820</p>
         </li>
-        <li id="monsoon-paper">
-          <h3><a href="https://www.konkuk.ac.kr/sites/kucri/files/down/20-1_2.pdf">Assessment of Planetary Boundary Layer and Cumulus Parameterization Schemes on 2022 East Asian Summer Monsoon Simulation <small>(PDF)</small></a></h3>
-          <p><strong>Park, J.</strong> &amp; Cha, D.-H.</p>
-          <p><i>Journal of Climate Research</i> · 2025 · 20(1), 27–42</p>
-        </li>
       </ul>
-    </section>
+    </details>
 
-    <section class="record-section" aria-labelledby="presentations">
-      <h2 id="presentations" class="section-title">Conference Presentations <span lang="ko" class="korean">학술대회 발표</span></h2>
-      <section class="selected-talks" aria-labelledby="selected-talks">
-        <h3 id="selected-talks">Presented by Junseo Park <span lang="ko" class="korean">· 직접 발표</span> (14)</h3>
+    <details class="record-section foldable" aria-labelledby="presentations" open>
+      <summary><h2 id="presentations" class="section-title">Conference Presentations <span lang="ko" class="korean">학술대회 발표</span></h2></summary>
+      <details class="selected-talks foldable" aria-labelledby="selected-talks" open>
+        <summary><h3 id="selected-talks">Presented by Junseo Park <span lang="ko" class="korean">· 직접 발표</span> (14)</h3></summary>
         <ul class="entries media-grid">
           <li class="media-card">
             <h4>River Discharge and Ocean Spin-Up Effects on Coupled Regional Climate Simulations Over CORDEX East Asia</h4>
@@ -381,7 +396,6 @@
             <p>KSCC First-Half Meeting · Poster (P-04) · Seoul, South Korea · 25 Jun 2026</p>
             <p><strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin, Uijeong Han, Dong-Hyun Cha</p>
             <p class="media-actions"><a href="presentations/kscc-2026-spring-poster.pdf">Conference poster (PDF)</a></p>
-            <p class="media-actions">The regional SST and salinity panels also appear in the <a href="#cordex-interim-report">June 2026 CORDEX interim report</a>.</p>
             <a class="media-preview" href="presentations/kscc-2026-spring-poster.pdf"><img src="presentations/kscc-2026-spring-poster.webp" alt="Regional monthly mean sea-surface temperature and salinity and biases relative to GLORYS across seven ocean subregions" width="1681" height="1146" loading="lazy" decoding="async"></a>
           </li>
           <li class="media-card">
@@ -474,9 +488,9 @@
             <a class="media-preview" href="presentations/icrc-cordex-2023-poster.pdf"><img src="presentations/icrc-cordex-2023-poster.webp" alt="Daily precipitation and kinetic-energy diagnostics across four East Asian summer cases" width="1601" height="1039" loading="lazy" decoding="async"></a>
           </li>
         </ul>
-      </section>
+      </details>
       <details class="record-group">
-        <summary>Co-authored Contributions <span lang="ko" class="korean">공동저자 참여</span> (16)</summary>
+        <summary>Co-authored Contributions <span lang="ko" class="korean">공동저자 참여</span> (17)</summary>
         <ul class="entries media-grid">
         <li>
           <h3>Role of Air–Sea Interaction in Modulating Winter Temperature Biases over Northeast Asia in a Coupled Regional Climate Model</h3>
@@ -484,12 +498,14 @@
           <p>Seok-Woo Shin, Minkyu Lee, Changyong Park, Woojin Cho, <strong>Junseo Park</strong>, Dong-Hyun Cha</p>
           <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1359447965&amp;range=B82:G82">HWPL conference record</a></p>
         </li>
-        <li>
-          <h3>Development of Downscaled Climate Change Scenarios Using a Coupled Regional Climate Model</h3>
-          <p lang="ko" class="korean">결합지역기후모델을 이용한 상세화 기후변화 시나리오 산출 기술 개발</p>
-          <p>KSCC First-Half Meeting · Oral · Seoul, South Korea · 25 Jun 2026</p>
+        <li class="media-card">
+          <h3>Evaluating Tropical Cyclone Simulation in a Coupled Regional Climate Model and Developing Post-Processing Methods for Large Climate Datasets</h3>
+          <p lang="ko" class="korean">결합지역기후모델의 태풍 재현성 평가 및 대용량 기후자료 후처리 기술 구축</p>
+          <p>KSCC First-Half Meeting · Oral (G-09) · Seoul, South Korea · 25 Jun 2026</p>
           <p>Dong-Hyun Cha, <strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin, Uijeong Han</p>
           <p>Presenter: Dong-Hyun Cha · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1359447965&amp;range=B58:G58">HWPL conference record</a></p>
+          <p class="media-actions"><a href="presentations/kscc-2026-spring-cordex-talk-web.pdf">Selected conference slides (PDF · 32 pages)</a></p>
+          <a class="media-preview" href="presentations/kscc-2026-spring-cordex-talk-web.pdf"><img src="presentations/kscc-2026-spring-cordex-talk.webp" width="1681" height="1181" alt="Observed and simulated tropical cyclone genesis and track densities, with coupled and uncoupled experiments" loading="lazy" decoding="async"></a>
         </li>
         <li>
           <h3>Mechanisms Improving Northeast Asian Winter Temperature Simulations in an Atmosphere–Ocean Coupled Regional Climate Model</h3>
@@ -518,12 +534,14 @@
           <p>Seok-Woo Shin, Minkyu Lee, Changyong Park, Woojin Cho, <strong>Junseo Park</strong>, Dong-Hyun Cha</p>
           <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1359447965&amp;range=B29:G29">HWPL conference record</a></p>
         </li>
-        <li id="kscc-2025-fall">
+        <li id="kscc-2025-fall" class="media-card">
           <h3>Simulating Western North Pacific Tropical Cyclones Using a Coupled Regional Climate Model</h3>
           <p lang="ko" class="korean">결합지역기후모델을 이용한 북서태평양 태풍 모의</p>
           <p>KSCC Fall Meeting · Oral · Busan, South Korea · 3-5 Dec 2025 (conference dates)</p>
           <p>Dong-Hyun Cha, <strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin</p>
           <p>Presenter: Dong-Hyun Cha · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B114:G114">HWPL conference record</a></p>
+          <p class="media-actions"><a href="presentations/kscc-2025-fall-cordex.pdf">Selected conference slides (PDF · 20 pages)</a></p>
+          <a class="media-preview" href="presentations/kscc-2025-fall-cordex.pdf"><img src="presentations/kscc-2025-fall-cordex.webp" width="1701" height="520" alt="Western North Pacific tropical cyclone genesis and track density in observations, WRF, and WRF–COAWST ensembles" loading="lazy" decoding="async"></a>
         </li>
         <li>
           <h3>Effects of the East Asian Winter Monsoon on Snowfall over the Korean Peninsula: A Regional Climate Model Approach</h3>
@@ -538,12 +556,14 @@
           <p>Seok-Woo Shin, Minkyu Lee, Woojin Cho, <strong>Junseo Park</strong>, Changyong Park, Dong-Hyun Cha</p>
           <p>Presenter: Seok-Woo Shin · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B77:G77">HWPL conference record</a></p>
         </li>
-        <li id="kscc-2025-spring">
-          <h3>Running a Coupled Regional Climate Model over East Asia with Ocean Initialization</h3>
-          <p lang="ko" class="korean">해양 초기화를 이용한 동아시아 결합지역기후모델 구동</p>
-          <p>KSCC First-Half Meeting · Oral · Seoul, South Korea · 19 Jun 2025</p>
+        <li id="kscc-2025-spring" class="media-card">
+          <h3>The Need for Ocean Initialization in Coupled Regional Climate Simulations</h3>
+          <p lang="ko" class="korean">결합지역기후모델 구동을 위한 해양 초기화의 필요성</p>
+          <p>KSCC First-Half Meeting · Oral (B-11) · Seoul, South Korea · 19 Jun 2025</p>
           <p>Dong-Hyun Cha, <strong>Junseo Park</strong>, Woojin Cho, Seok-Woo Shin</p>
           <p>Presenter: Dong-Hyun Cha · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B54:G54">HWPL conference record</a></p>
+          <p class="media-actions"><a href="presentations/kscc-2025-spring-cordex.pdf">Selected conference slides (PDF · 19 pages)</a></p>
+          <a class="media-preview" href="presentations/kscc-2025-spring-cordex.pdf"><img src="presentations/kscc-2025-spring-cordex.webp" width="1701" height="449" alt="Sea-surface temperature and bias against GLORYS for COAWST with and without ocean initialization" loading="lazy" decoding="async"></a>
         </li>
         <li>
           <h3>Winter Temperature Biases over East Asia in a Regional Climate Model: Atmosphere–Ocean Coupling and PBL Parameterization Schemes</h3>
@@ -566,13 +586,22 @@
           <p>Taehyung Kim, <strong>Junseo Park</strong>, Mihye Seo, Dong-Hyun Cha, Sung-Chul Hong, Jae-Bum Lee</p>
           <p>Presenter: Taehyung Kim · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=371243650&amp;range=B42:G42">HWPL conference record</a></p>
         </li>
-        <li>
+        <li class="media-card">
           <h3>Regional Climate Simulation over East Asia Using a Coupled Regional Climate Model</h3>
           <p lang="ko" class="korean">결합지역기후모델을 이용한 동아시아 지역기후모의</p>
           <p>CORDEX first-year results · <a href="https://kscc.re.kr/2024conference/papers/2024-2H_KSCC_Conference-Program.pdf">KSCC program (D-21)</a></p>
           <p>KSCC Fall Meeting · Oral · Jeju, South Korea · 28 Nov 2024</p>
           <p>Dong-Hyun Cha, <strong>Junseo Park</strong>, Seok-Woo Shin</p>
           <p>Presenter: Dong-Hyun Cha · <a href="https://docs.google.com/spreadsheets/d/1OBPYL4hR6p3l5ei_Ig17BL9sSS-nicIOQAmg4ZQetAk/edit#gid=1698769006&amp;range=B113:G113">HWPL conference record</a></p>
+          <p class="media-actions"><a href="presentations/kscc-2024-fall-cordex-talk.pdf">Selected conference slides (PDF · 18 pages)</a></p>
+          <a class="media-preview" href="presentations/kscc-2024-fall-cordex-talk.pdf"><img src="presentations/kscc-2024-fall-cordex-talk.webp" width="1681" height="423" alt="Annual sea-surface temperature in COAWST and GLORYS and their difference" loading="lazy" decoding="async"></a>
+        </li>
+        <li>
+          <h3>Development of a Coupled Regional Climate Model for High-Resolution Climate Change Scenarios over East Asia</h3>
+          <p lang="ko" class="korean">동아시아 상세 기후변화 시나리오 산출을 위한 결합지역기후모델 구축</p>
+          <p>KSCC First-Half Meeting · Oral (D-10) · Seoul, South Korea · 20 Jun 2024</p>
+          <p>Dong-Hyun Cha, <strong>Junseo Park</strong>, Seok-Woo Shin</p>
+          <p>Presenter: Dong-Hyun Cha · <a href="https://kscc.re.kr/2024summer/papers/2024-1H_KSCC_Conference-Program.pdf">KSCC program</a></p>
         </li>
         <li>
           <h3>Recent Changes and Related Factors of Tropical Night in the South Korea Metropolitan Area</h3>
@@ -589,11 +618,11 @@
         </li>
         </ul>
       </details>
-    </section>
+    </details>
 
     <div class="credentials">
-      <section aria-labelledby="education">
-        <h2 id="education" class="section-title">Education <span lang="ko" class="korean">학력</span></h2>
+      <details class="foldable" aria-labelledby="education" open>
+        <summary><h2 id="education" class="section-title">Education <span lang="ko" class="korean">학력</span></h2></summary>
         <ul class="entries">
           <li>
             <h3>Integrated M.S.–Ph.D. program, UNIST</h3>
@@ -603,12 +632,12 @@
           <li>
             <h3>B.S. in Urban and Environmental Engineering, UNIST</h3>
             <p lang="ko" class="korean">울산과학기술원 도시환경공학 학사</p>
-            <p>Mar 2020–Feb 2023</p>
+            <p>Mar 2020–Feb 2023 · <i>Magna cum laude</i></p>
           </li>
         </ul>
-      </section>
-      <section aria-labelledby="honors">
-        <h2 id="honors" class="section-title">Awards and Scholarships <span lang="ko" class="korean">수상 및 장학금</span></h2>
+      </details>
+      <details class="foldable" aria-labelledby="honors" open>
+        <summary><h2 id="honors" class="section-title">Awards and Scholarships <span lang="ko" class="korean">수상 및 장학금</span></h2></summary>
         <ul class="entries">
           <li>
             <h3>Best Poster Paper Award</h3>
@@ -629,11 +658,11 @@
             <p><span lang="ko" class="korean">UNIST 장학금(학부)</span> · Mar 2020–Feb 2023</p>
           </li>
         </ul>
-      </section>
+      </details>
     </div>
 
-    <section class="record-section" aria-labelledby="projects">
-      <h2 id="projects" class="section-title">Research Projects <span lang="ko" class="korean">연구과제 참여</span></h2>
+    <details class="record-section foldable" aria-labelledby="projects" open>
+      <summary><h2 id="projects" class="section-title">Research Projects <span lang="ko" class="korean">연구과제 참여</span></h2></summary>
       <ul class="entries">
         <li>
           <h3>Diagnosing the Causes of Subtropicalization of Precipitation over the Korean Peninsula Using the Multifaceted Capabilities of Convection-Permitting Models</h3>
@@ -678,10 +707,10 @@
           <p>Lead institution: Ulsan National Institute of Science and Technology</p>
         </li>
       </ul>
-    </section>
+    </details>
 
-    <section class="profiles" aria-labelledby="profiles">
-      <h2 id="profiles" class="section-title">Academic links <span lang="ko" class="korean">연구 링크</span></h2>
+    <details class="profiles foldable" aria-labelledby="profiles" open>
+      <summary><h2 id="profiles" class="section-title">Academic links <span lang="ko" class="korean">연구 링크</span></h2></summary>
       <ul>
         <li><a href="mailto:junseo1026@unist.ac.kr">junseo1026@unist.ac.kr</a></li>
         <li><a href="https://dhcha.unist.ac.kr/">HWPL <span lang="ko" class="korean">연구실</span> <span aria-hidden="true">↗</span></a></li>
@@ -689,8 +718,25 @@
         <li><a href="https://www.researchgate.net/profile/Junseo-Park-13">ResearchGate <span aria-hidden="true">↗</span></a></li>
         <li><a href="https://loop.frontiersin.org/people/3601711/overview">Frontiers Loop <span aria-hidden="true">↗</span></a></li>
       </ul>
-    </section>
+    </details>
   </main>
+  <script>
+    function revealSection(hash) {
+      if (!hash) return;
+      const target = document.getElementById(hash.slice(1));
+      if (!target) return;
+      for (let item = target; item; item = item.parentElement) {
+        if (item instanceof HTMLDetailsElement) item.open = true;
+      }
+    }
+
+    document.addEventListener("click", event => {
+      const link = event.target.closest('a[href^="#"]');
+      if (link) revealSection(link.hash);
+    });
+    window.addEventListener("hashchange", () => revealSection(location.hash));
+    revealSection(location.hash);
+  </script>
   <script>
     const heroCopy = document.querySelector(".hero-copy");
     const heroName = heroCopy.querySelector("h1");
